@@ -57,7 +57,7 @@ const glossary = [
   { term: "Vipaśyanā", definition: "Insight meditation — analytical meditation that penetrates the nature of reality." },
 ];
 
-export default function SupportPage() {
+export default function ReferencesPage() {
   const [openFaq, setOpenFaq] = useState(null);
   const [glossaryFilter, setGlossaryFilter] = useState("");
 
@@ -68,16 +68,16 @@ export default function SupportPage() {
   );
 
   return (
-    <div className="support-page">
+    <div className="references-page">
       <header className="page-hero">
-        <h1>Support & Reference</h1>
+        <h1>References</h1>
         <p className="hero-subtitle">
           Frequently asked questions, glossary, and guidance for navigating
           the teachings
         </p>
       </header>
 
-      <section className="support-section">
+      <section className="references-section">
         <h2>Frequently Asked Questions</h2>
         <div className="faq-list">
           {faqs.map((faq, i) => (
@@ -95,7 +95,7 @@ export default function SupportPage() {
         </div>
       </section>
 
-      <section className="support-section">
+      <section className="references-section">
         <h2>Sanskrit Glossary</h2>
         <input
           type="text"
@@ -114,7 +114,7 @@ export default function SupportPage() {
         </div>
       </section>
 
-      <section className="support-section">
+      <section className="references-section">
         <h2>Study Path Suggestions</h2>
         <div className="study-paths">
           <div className="study-path-card">

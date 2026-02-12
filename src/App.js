@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TabNav from "./components/TabNav";
 import MainPage from "./pages/MainPage";
 import GamePage from "./pages/GamePage";
-import SupportPage from "./pages/SupportPage";
+import ReferencesPage from "./pages/ReferencesPage";
 import AboutPage from "./pages/AboutPage";
 import "./App.css";
 
@@ -15,7 +15,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/game" element={<GamePage />} />
-            <Route path="/support" element={<SupportPage />} />
+            <Route path="/references" element={<ReferencesPage />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </main>

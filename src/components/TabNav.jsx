@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const tabs = [
   { path: "/", label: "Main", icon: "◉" },
   { path: "/game", label: "Game", icon: "⬡" },
-  { path: "/support", label: "Support", icon: "☸" },
+  { path: "/references", label: "References", icon: "☸" },
   { path: "/about", label: "About", icon: "◈" },
 ];
 

@@ -906,20 +906,20 @@
 }
 
 /* ============================================
-   SUPPORT PAGE
+   REFERENCES PAGE
    ============================================ */
 
-.support-page {
+.references-page {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.support-section {
+.references-section {
   margin: 2rem 0;
 }
 
-.support-section h2 {
+.references-section h2 {
   color: var(--accent-gold);
   font-size: 1.25rem;
   margin-bottom: 1rem;
@@ -1160,6 +1160,298 @@
 }
 
 /* ============================================
+   GAME TYPE MENU
+   ============================================ */
+
+.game-type-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.game-type-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  text-align: center;
+}
+
+.game-type-card:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.game-type-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.game-type-card h3 {
+  color: var(--accent-gold);
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+}
+
+.game-type-card p {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.back-to-menu-btn {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 0.5rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+
+.back-to-menu-btn:hover {
+  border-color: var(--accent-teal);
+  color: var(--text-primary);
+}
+
+.back-to-menu-btn.small {
+  margin: 0;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+}
+
+/* ============================================
+   MATCHING PAIRS
+   ============================================ */
+
+.matching-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0 1rem;
+  flex-wrap: wrap;
+}
+
+.matching-stats {
+  display: flex;
+  gap: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.matching-stats span {
+  background: var(--bg-card);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.matching-grid {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.matching-card {
+  aspect-ratio: 1;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  perspective: 600px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.matching-card:hover:not(.matched) {
+  border-color: var(--accent-teal);
+  box-shadow: var(--shadow-md);
+}
+
+.matching-card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.matching-card-front,
+.matching-card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem;
+  text-align: center;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.matching-card-front {
+  font-size: 1.5rem;
+  opacity: 0.4;
+}
+
+.matching-card-back {
+  display: none;
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+
+.matching-card.flipped .matching-card-front,
+.matching-card.matched .matching-card-front {
+  display: none;
+}
+
+.matching-card.flipped .matching-card-back,
+.matching-card.matched .matching-card-back {
+  display: flex;
+}
+
+.matching-card.flipped {
+  border-color: var(--accent-gold);
+  background: rgba(212, 160, 60, 0.1);
+}
+
+.matching-card.matched {
+  border-color: var(--accent-green);
+  background: rgba(91, 160, 143, 0.12);
+  opacity: 0.85;
+  cursor: default;
+}
+
+.matching-card.matched .matching-card-back {
+  color: var(--accent-green);
+}
+
+/* ============================================
+   SEQUENCING
+   ============================================ */
+
+.sequence-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sequence-title {
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+  margin: 0;
+  flex: 1;
+}
+
+.sequence-attempts {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.sequence-instructions {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.sequence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.sequence-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  text-align: left;
+  transition: all var(--transition);
+  width: 100%;
+}
+
+.sequence-item:hover:not(.correct):not(.wrong) {
+  border-color: var(--accent-teal);
+  background: var(--bg-card-hover);
+}
+
+.sequence-item.selected {
+  border-color: var(--accent-gold);
+  background: rgba(212, 160, 60, 0.1);
+  box-shadow: 0 0 0 1px var(--accent-gold);
+}
+
+.sequence-item.correct {
+  border-color: var(--accent-green);
+  background: rgba(91, 160, 143, 0.12);
+}
+
+.sequence-item.wrong {
+  border-color: var(--accent-rose);
+  background: rgba(201, 94, 94, 0.1);
+}
+
+.sequence-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.8rem;
+  height: 1.8rem;
+  background: var(--bg-primary);
+  color: var(--accent-gold);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sequence-label {
+  flex: 1;
+  font-weight: 500;
+}
+
+.sequence-correct-pos {
+  font-size: 0.75rem;
+  color: var(--accent-rose);
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+.sequence-actions {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 
@@ -1201,5 +1493,51 @@
   .detail-section.enemies {
     flex-direction: column;
     gap: 0.4rem;
+  }
+
+  .game-page {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .game-type-section {
+    grid-template-columns: 1fr;
+  }
+
+  .matching-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.35rem;
+  }
+
+  .matching-card {
+    font-size: 0.7rem;
+  }
+
+  .matching-card-back {
+    font-size: 0.68rem;
+  }
+
+  .matching-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .matching-stats {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+  }
+
+  .sequence-item {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.82rem;
+    gap: 0.5rem;
+  }
+
+  .sequence-slot {
+    min-width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.7rem;
   }
 }
