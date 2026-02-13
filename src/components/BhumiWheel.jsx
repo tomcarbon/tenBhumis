@@ -1,11 +1,14 @@
 import { tenBhumis } from "../data";
+import { useBhumi } from "../context/BhumiContext";
 
+// Traditional colors associated with the ten Bodhisattva grounds
 const COLORS = [
-  "#4a90a4", "#5ba08f", "#6db07a", "#8fbc5e", "#b8c84a",
-  "#d4b83c", "#d99a3e", "#de7c40", "#c95e5e", "#a44a8a",
+  "#c94a4a", "#c8c4be", "#c9a040", "#8b6843", "#2a4080",
+  "#ddd8d0", "#4a78b4", "#eeeee8", "#8a5098", "#6a30a0",
 ];
 
 export default function BhumiWheel({ onSelect }) {
+  const { setActiveGround } = useBhumi();
   const size = 380;
   const center = size / 2;
   const outerR = 170;
@@ -44,7 +47,7 @@ export default function BhumiWheel({ onSelect }) {
             <g
               key={i}
               className="wheel-segment"
-              onClick={() => onSelect?.(bhumi)}
+              onClick={() => { onSelect?.(bhumi); setActiveGround(bhumi); }}
             >
               <path d={path} fill={COLORS[i]} opacity={0.85} />
               <text
@@ -60,25 +63,27 @@ export default function BhumiWheel({ onSelect }) {
             </g>
           );
         })}
-        <circle cx={center} cy={center} r={innerR - 2} className="wheel-center" />
-        <text
-          x={center}
-          y={center - 8}
-          textAnchor="middle"
-          dominantBaseline="middle"
-          className="wheel-center-text"
-        >
-          Ten
-        </text>
-        <text
-          x={center}
-          y={center + 12}
-          textAnchor="middle"
-          dominantBaseline="middle"
-          className="wheel-center-text"
-        >
-          Bhūmis
-        </text>
+        <g className="wheel-center-group" onClick={() => setActiveGround(null)} style={{ cursor: "pointer" }}>
+          <circle cx={center} cy={center} r={innerR - 2} className="wheel-center" />
+          <text
+            x={center}
+            y={center - 8}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            className="wheel-center-text"
+          >
+            Ten
+          </text>
+          <text
+            x={center}
+            y={center + 12}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            className="wheel-center-text"
+          >
+            Bhūmis
+          </text>
+        </g>
       </svg>
     </div>
   );

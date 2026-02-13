@@ -1,4 +1,42 @@
+import { useNavigate } from "react-router-dom";
+
+const coverageItems = [
+  { label: "Ten Bhūmis (Daśabhūmi)", id: "ten-bhumis" },
+  { label: "Six Pāramitās", id: "six-paramitas" },
+  { label: "Ten Pāramitās", id: "ten-paramitas" },
+  { label: "Four Dhyānas", id: "four-dhyanas" },
+  { label: "Four Formless Absorptions", id: "four-formless-absorptions" },
+  { label: "Four Immeasurables (Brahmavihāra)", id: "four-immeasurables" },
+  { label: "Nine Stages of Śamatha", id: "nine-stages-of-shamatha" },
+  { label: "Five Paths (Pañcamārga)", id: "five-paths" },
+  { label: "Four Noble Truths", id: "four-noble-truths" },
+  { label: "Noble Eightfold Path", id: "eightfold-path" },
+  { label: "Twelve Links of Dependent Origination", id: "twelve-links" },
+  { label: "Three Marks of Existence", id: "three-marks" },
+  { label: "Five Aggregates (Skandha)", id: "five-aggregates" },
+  { label: "37 Factors of Enlightenment", id: "thirty-seven-factors" },
+  { label: "Two Obscurations", id: "two-obscurations" },
+  { label: "Three Bodies (Trikāya)", id: "three-bodies" },
+  { label: "Six Root Afflictions", id: "six-root-afflictions" },
+  { label: "Bodhicitta", id: "bodhicitta" },
+  { label: "Ten Virtuous Actions", id: "ten-virtuous-actions" },
+  { label: "Three Realms", id: "three-realms" },
+  { label: "Six Realms of Rebirth", id: "six-realms" },
+];
+
 export default function AboutPage() {
+  const navigate = useNavigate();
+
+  const handleCoverageClick = (listId) => {
+    navigate("/");
+    setTimeout(() => {
+      const el = document.getElementById(`list-${listId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 100);
+  };
+
   return (
     <div className="about-page">
       <header className="page-hero">
@@ -126,32 +164,14 @@ export default function AboutPage() {
         <h2>Content Coverage</h2>
         <p>This application currently includes the following teaching lists:</p>
         <div className="coverage-grid">
-          {[
-            "Ten Bhūmis (Daśabhūmi)",
-            "Six Pāramitās",
-            "Ten Pāramitās",
-            "Four Dhyānas",
-            "Four Formless Absorptions",
-            "Four Immeasurables (Brahmavihāra)",
-            "Nine Stages of Śamatha",
-            "Five Paths (Pañcamārga)",
-            "Four Noble Truths",
-            "Noble Eightfold Path",
-            "Twelve Links of Dependent Origination",
-            "Three Marks of Existence",
-            "Five Aggregates (Skandha)",
-            "37 Factors of Enlightenment",
-            "Two Obscurations",
-            "Three Bodies (Trikāya)",
-            "Six Root Afflictions",
-            "Bodhicitta",
-            "Ten Virtuous Actions",
-            "Three Realms",
-            "Six Realms of Rebirth",
-          ].map((item) => (
-            <span key={item} className="coverage-item">
-              {item}
-            </span>
+          {coverageItems.map((item) => (
+            <button
+              key={item.id}
+              className="coverage-item coverage-item--link"
+              onClick={() => handleCoverageClick(item.id)}
+            >
+              {item.label}
+            </button>
           ))}
         </div>
       </section>

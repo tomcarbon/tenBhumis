@@ -1,9 +1,17 @@
 import CrossReference from "./CrossReference";
 
+// Traditional colors associated with the ten Bodhisattva grounds
 const COLORS = [
-  "#4a90a4", "#5ba08f", "#6db07a", "#8fbc5e", "#b8c84a",
-  "#d4b83c", "#d99a3e", "#de7c40", "#c95e5e", "#a44a8a",
+  "#c94a4a", "#c8c4be", "#c9a040", "#8b6843", "#2a4080",
+  "#ddd8d0", "#4a78b4", "#eeeee8", "#8a5098", "#6a30a0",
 ];
+
+// Light bhumi colors need dark text for readability
+function textColorFor(hex) {
+  const [r, g, b] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.55 ? "#1a1a2e" : "#e8e8f0";
+}
 
 export default function BhumiDetail({ bhumi, onClose }) {
   if (!bhumi) return null;
@@ -11,7 +19,7 @@ export default function BhumiDetail({ bhumi, onClose }) {
 
   return (
     <div className="bhumi-detail" style={{ borderColor: color }}>
-      <div className="bhumi-detail-header" style={{ backgroundColor: color }}>
+      <div className="bhumi-detail-header" style={{ backgroundColor: color, color: textColorFor(color) }}>
         <span className="bhumi-number">{bhumi.number}</span>
         <div>
           <h3>
@@ -30,7 +38,7 @@ export default function BhumiDetail({ bhumi, onClose }) {
         <div className="bhumi-detail-grid">
           <div className="detail-block">
             <h4>Corresponding Perfection</h4>
-            <p className="paramita-tag" style={{ backgroundColor: color }}>
+            <p className="paramita-tag" style={{ backgroundColor: color, color: textColorFor(color) }}>
               {bhumi.paramita}
             </p>
           </div>

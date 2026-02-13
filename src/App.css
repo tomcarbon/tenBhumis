@@ -1150,6 +1150,20 @@
   font-size: 0.8rem;
 }
 
+.coverage-item--link {
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.coverage-item--link:hover,
+.coverage-item--link:focus-visible {
+  background: var(--accent-color, #b8860b);
+  color: #fff;
+  border-color: var(--accent-color, #b8860b);
+  outline: none;
+}
+
 .future-list {
   color: var(--text-secondary);
   font-size: 0.9rem;
