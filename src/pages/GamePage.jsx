@@ -1,5 +1,28 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { allLists } from "../data";
+
+// Maps each quiz category label to the list it belongs to on the Main page.
+// Categories with no single source list (e.g. "Bhūmi-Paramita", which spans two)
+// are intentionally absent and render as visible-but-dimmed, non-navigable tags.
+const CATEGORY_LIST_IDS = {
+  "Ten Bhūmis": "ten-bhumis",
+  "Four Immeasurables": "four-immeasurables",
+  "Formless Absorptions": "four-formless-absorptions",
+  "Five Paths": "five-paths",
+  "Four Noble Truths": "four-noble-truths",
+  "Five Aggregates": "five-aggregates",
+  "Eightfold Path": "eightfold-path",
+  "Twelve Links": "twelve-links",
+  "Three Marks": "three-marks",
+  "Six Realms": "six-realms",
+  "Four Dhyānas": "four-dhyanas",
+  "Nine Stages of Śamatha": "nine-stages-of-shamatha",
+  "Six Root Afflictions": "six-root-afflictions",
+  "Three Bodies": "three-bodies",
+  "Ten Virtuous Actions": "ten-virtuous-actions",
+  "Three Realms": "three-realms",
+};
 
 // ============================================
 // QUIZ GENERATION
@@ -477,6 +500,7 @@ function formatTime(seconds) {
 // ============================================
 
 export default function GamePage() {
+  const navigate = useNavigate();
   const allQuestions = useMemo(() => generateQuiz(allLists), []);
   const allPairs = useMemo(() => generateMatchingPairs(allLists), []);
   const allSequences = useMemo(() => generateSequencingChallenges(allLists), []);
@@ -733,11 +757,34 @@ export default function GamePage() {
         <div className="game-info">
           <h3>Available Categories</h3>
           <div className="category-tags">
-            {[...new Set(allQuestions.map((q) => q.category))].map((cat) => (
-              <span key={cat} className="cat-tag">
-                {cat}
-              </span>
-            ))}
+            {[...new Set(allQuestions.map((q) => q.category))].map((cat) => {
+              const listId = CATEGORY_LIST_IDS[cat];
+              const list = listId ? allLists[listId] : null;
+
+              if (!list) {
+                return (
+                  <button
+                    key={cat}
+                    className="cat-tag unresolved"
+                    disabled
+                    title="Not yet available"
+                  >
+                    {cat}
+                  </button>
+                );
+              }
+
+              return (
+                <button
+                  key={cat}
+                  className="cat-tag"
+                  onClick={() => navigate("/", { state: { scrollTo: listId } })}
+                  title={list.subtitle || `Go to ${list.title}`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>

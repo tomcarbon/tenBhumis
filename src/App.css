@@ -711,6 +711,25 @@
   border-radius: var(--radius-sm);
   font-size: 0.78rem;
   color: var(--text-secondary);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+button.cat-tag:hover {
+  background: rgba(74, 144, 164, 0.18);
+  border-color: var(--accent-teal);
+  color: var(--text-primary);
+}
+
+.cat-tag.unresolved,
+.cat-tag.unresolved:hover {
+  background: rgba(160, 160, 175, 0.08);
+  border-color: rgba(160, 160, 175, 0.2);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  opacity: 0.55;
+  font-style: italic;
 }
 
 /* Quiz */

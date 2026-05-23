@@ -1,10 +1,12 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import BhumiWheel from "../components/BhumiWheel";
 import BhumiDetail from "../components/BhumiDetail";
 import CategorySection from "../components/CategorySection";
 import { listCategories } from "../data";
 
 export default function MainPage() {
+  const location = useLocation();
   const [selectedBhumi, setSelectedBhumi] = useState(null);
   const [highlightId, setHighlightId] = useState(null);
 
@@ -16,6 +18,15 @@ export default function MainPage() {
       setTimeout(() => setHighlightId(null), 2000);
     }
   }, []);
+
+  // Arriving from another page (e.g. a Quiz category tag) with a target list:
+  // scroll to and highlight it once the lists have rendered.
+  useEffect(() => {
+    const target = location.state?.scrollTo;
+    if (target) {
+      handleNavigate(target);
+    }
+  }, [location.state, handleNavigate]);
 
   return (
     <div className="main-page">
