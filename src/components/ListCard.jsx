@@ -33,7 +33,7 @@ export default function ListCard({ list, onNavigate }) {
 
           <div className="list-card-items">
             {list.items?.map((item, idx) => (
-              <ListItem key={idx} item={item} listId={list.id} />
+              <ListItem key={idx} item={item} listId={list.id} onNavigate={onNavigate} />
             ))}
           </div>
 
@@ -51,7 +51,7 @@ export default function ListCard({ list, onNavigate }) {
   );
 }
 
-function ListItem({ item, listId }) {
+function ListItem({ item, listId, onNavigate }) {
   const [open, setOpen] = useState(false);
 
   // Handle grouped items (like the 37 factors)
@@ -256,7 +256,7 @@ function ListItem({ item, listId }) {
             <div className="detail-refs">
               <span className="refs-label">See also:</span>
               {item.crossReferences.map((ref) => (
-                <CrossReference key={ref} refId={ref} />
+                <CrossReference key={ref} refId={ref} onNavigate={onNavigate} />
               ))}
             </div>
           )}

@@ -474,6 +474,16 @@
   color: var(--text-primary);
 }
 
+.cross-ref-tag.unresolved,
+.cross-ref-tag.unresolved:hover {
+  background: rgba(160, 160, 175, 0.08);
+  color: var(--text-secondary);
+  border-color: rgba(160, 160, 175, 0.2);
+  cursor: not-allowed;
+  opacity: 0.55;
+  font-style: italic;
+}
+
 /* ============================================
    LIST ITEMS
    ============================================ */

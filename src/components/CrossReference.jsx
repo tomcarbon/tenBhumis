@@ -2,19 +2,21 @@ import { allLists } from "../data";
 
 export default function CrossReference({ refId, onNavigate }) {
   const list = allLists[refId];
-  const label = list ? list.title : refId.replace(/-/g, " ");
+  const isResolved = Boolean(list);
+  const label = isResolved ? list.title : refId.replace(/-/g, " ");
 
   const handleClick = () => {
-    if (onNavigate && list) {
+    if (onNavigate && isResolved) {
       onNavigate(refId);
     }
   };
 
   return (
     <button
-      className="cross-ref-tag"
+      className={`cross-ref-tag${isResolved ? "" : " unresolved"}`}
       onClick={handleClick}
-      title={list?.subtitle || ""}
+      disabled={!isResolved}
+      title={isResolved ? list.subtitle || "" : "Not yet available"}
     >
       {label}
     </button>
